@@ -1,0 +1,166 @@
+/* テトリスWebゲーム ドキュメントサイト カスタムスタイル */
+
+/* 日本語フォント設定 */
+:root {
+  --font-family-base: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+  --font-family-code: "Source Code Pro", "Consolas", "Monaco", monospace;
+}
+
+/* Mermaid図のスタイル調整 */
+.mermaid {
+  background-color: transparent !important;
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* ダークテーマ用Mermaid背景 */
+.dark-theme .mermaid {
+  background-color: rgba(30, 30, 30, 0.5) !important;
+}
+
+/* テーブルスタイル強化 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid var(--table-border-color, #444);
+}
+
+th {
+  background-color: var(--table-header-bg, #2d2d2d);
+  font-weight: 600;
+}
+
+/* コードブロック */
+pre {
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+code {
+  font-family: var(--font-family-code);
+  font-size: 0.9em;
+}
+
+/* キーボードキー表示 */
+kbd {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  font-family: var(--font-family-code);
+  font-size: 0.85em;
+  line-height: 1.2;
+  color: #fff;
+  background-color: #333;
+  border: 1px solid #555;
+  border-radius: 4px;
+  box-shadow: 0 2px 0 #222;
+}
+
+/* テトリミノカラー */
+.tetromino-i { color: #00f0f0; }
+.tetromino-o { color: #f0f000; }
+.tetromino-t { color: #a000f0; }
+.tetromino-s { color: #00f000; }
+.tetromino-z { color: #f00000; }
+.tetromino-j { color: #0000f0; }
+.tetromino-l { color: #f0a000; }
+
+/* ヒーローセクション */
+.hero {
+  text-align: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-radius: 12px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* カードグリッド */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.card {
+  padding: 1.5rem;
+  background: var(--card-bg, #2d2d2d);
+  border-radius: 8px;
+  border: 1px solid var(--card-border, #444);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--link-color, #7eb4e2);
+}
+
+/* バッジ */
+.badge {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-size: 0.75em;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-left: 0.5em;
+}
+
+.badge-info { background: #0077b6; color: #fff; }
+.badge-success { background: #2a9d8f; color: #fff; }
+.badge-warning { background: #e9c46a; color: #000; }
+
+/* レスポンシブ調整 */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mermaid {
+    font-size: 0.85rem;
+  }
+}
+
+/* スクロールバー */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

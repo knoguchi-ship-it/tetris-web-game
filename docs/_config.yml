@@ -1,0 +1,56 @@
+# テトリスWebゲーム ドキュメントサイト設定
+# Jekyll + just-the-docs テーマ
+
+title: Tetris Web Game
+description: Tetris Guideline (2009) 準拠のWebテトリスゲーム技術ドキュメント
+baseurl: "/tetris-web-game"
+url: "https://knoguchi-ship-it.github.io"
+
+# テーマ設定
+remote_theme: just-the-docs/just-the-docs
+
+# 日本語設定
+lang: ja
+
+# カラースキーム（light / dark）
+color_scheme: dark
+
+# 検索機能
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+
+# ナビゲーション設定
+nav_sort: case_insensitive
+
+# フッター
+footer_content: "&copy; 2024 Tetris Web Game. Powered by Jekyll & GitHub Pages."
+
+# Mermaid.js 有効化
+mermaid:
+  version: "10.6.1"
+
+# 外部リンク
+aux_links:
+  "ゲームをプレイ":
+    - "https://tetris-web-game.web.app"
+  "GitHub":
+    - "https://github.com/knoguchi-ship-it/tetris-web-game"
+
+aux_links_new_tab: true
+
+# プラグイン
+plugins:
+  - jekyll-seo-tag
+
+# ビルド設定
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# 除外ファイル
+exclude:
+  - handover.md
+  - deploy.md
