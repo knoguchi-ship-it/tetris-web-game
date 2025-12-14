@@ -2,6 +2,10 @@
 
 Webブラウザで遊べる一人用テトリスゲーム。Tetris Guideline (2009) に準拠。
 
+## Play Now
+
+**https://tetris-web-game.web.app**
+
 ## Features
 
 - **SRS (Super Rotation System)**: Wall Kick対応の標準回転システム
@@ -18,6 +22,7 @@ Webブラウザで遊べる一人用テトリスゲーム。Tetris Guideline (20
 - HTML5 / CSS3 / JavaScript (ES6+)
 - Canvas API
 - LocalStorage (ハイスコア保存)
+- Firebase Hosting
 - No dependencies (Vanilla JS)
 
 ## Controls
@@ -38,17 +43,58 @@ Webブラウザで遊べる一人用テトリスゲーム。Tetris Guideline (20
 
 ```
 ├── docs/
-│   └── design.md    # 詳細設計ドキュメント
-├── src/             # ソースコード (実装予定)
+│   ├── design.md      # ゲーム設計書
+│   ├── deploy.md      # デプロイ手順
+│   └── handover.md    # 引き継ぎドキュメント
+├── src/
 │   ├── index.html
 │   ├── style.css
 │   └── js/
+│       ├── main.js
+│       ├── game.js
+│       ├── board.js
+│       ├── tetromino.js
+│       ├── srs.js
+│       ├── input.js
+│       ├── renderer.js
+│       └── scoring.js
+├── firebase.json
+├── .firebaserc
 └── README.md
+```
+
+## Local Development
+
+```bash
+# Clone repository
+git clone https://github.com/knoguchi-ship-it/tetris-web-game.git
+cd tetris-web-game
+
+# Start local server
+cd src && python -m http.server 8080
+
+# Open in browser
+# http://localhost:8080
+```
+
+## Deploy
+
+```bash
+# Install Firebase CLI
+npm install -g firebase-tools
+
+# Login
+firebase login
+
+# Deploy
+firebase deploy --only hosting
 ```
 
 ## Documentation
 
-詳細な仕様は [docs/design.md](docs/design.md) を参照。
+- [ゲーム設計書](docs/design.md) - Tetris Guideline準拠の詳細仕様
+- [デプロイ手順](docs/deploy.md) - Firebase Hostingデプロイ計画
+- [引き継ぎドキュメント](docs/handover.md) - プロジェクト引き継ぎ情報
 
 ## References
 
