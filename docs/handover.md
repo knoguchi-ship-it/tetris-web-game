@@ -201,7 +201,51 @@ firebase hosting:sites:list
 
 ---
 
-## 11. トラブルシューティング
+## 11. 有効化済みAPI
+
+GCPコンソールで以下のAPIが有効化されています：
+
+| API | URL |
+|-----|-----|
+| Firebase Management API | https://console.cloud.google.com/apis/library/firebase.googleapis.com?project=tetris-web-game |
+| Firebase Hosting API | https://console.cloud.google.com/apis/library/firebasehosting.googleapis.com?project=tetris-web-game |
+| Cloud Resource Manager API | https://console.cloud.google.com/apis/library/cloudresourcemanager.googleapis.com?project=tetris-web-game |
+
+---
+
+## 12. 組織ポリシーに関する注意事項
+
+### 背景
+
+`care-dx-platform.com` 組織では、Firebase CLIからの直接操作に制限があります。
+初回セットアップ時、`firebase projects:addfirebase` コマンドで403 Permission Deniedエラーが発生しました。
+
+### 解決方法（実績あり）
+
+CLIで失敗した場合は、**Firebase Consoleで直接操作**してください：
+
+1. https://console.firebase.google.com/ にアクセス
+2. `k.noguchi@care-dx-platform.com` でログイン
+3. 「プロジェクトを追加」→ 既存GCPプロジェクトを選択
+4. Firebaseを有効化
+
+### IAMロール
+
+以下のロールが `k.noguchi@care-dx-platform.com` に付与されています：
+
+| ロール | 説明 |
+|--------|------|
+| roles/owner | プロジェクトオーナー |
+| roles/firebase.admin | Firebase管理者 |
+
+確認コマンド：
+```bash
+gcloud projects get-iam-policy tetris-web-game
+```
+
+---
+
+## 13. トラブルシューティング
 
 ### Firebase CLIでPermission Deniedエラー
 
@@ -211,6 +255,7 @@ firebase hosting:sites:list
 1. Firebase Console (https://console.firebase.google.com/) で直接操作
 2. GCPコンソールでFirebase Admin IAMロールを付与
 3. `firebase login --reauth` でトークン更新
+4. 必要なAPIが有効か確認（11章参照）
 
 ### ローカルでゲームが動かない
 
@@ -228,7 +273,53 @@ cd src && python -m http.server 8080
 
 ---
 
-## 12. 連絡先
+## 14. ゲーム動作確認
+
+### 基本動作チェックリスト
+
+| 項目 | 確認内容 | 期待結果 |
+|------|---------|---------|
+| 起動 | ページ読み込み | ゲーム画面が表示される |
+| ピース生成 | 開始時 | テトリミノが上部に出現 |
+| 左右移動 | ← → キー | ピースが左右に移動 |
+| ソフトドロップ | ↓ キー長押し | ピースが高速で落下 |
+| ハードドロップ | ↑ キー | ピースが即座に着地 |
+| 回転 | Z/X キー | ピースが回転（壁際でWall Kick） |
+| ホールド | C キー | ピースが保留エリアに移動 |
+| ライン消去 | 1行揃える | 行が消えてスコア加算 |
+| ゴースト | 常時 | 着地位置に半透明表示 |
+| ネクスト | 常時 | 右側に次の3ピース表示 |
+| 一時停止 | Space キー | ゲームが停止 |
+| リスタート | R キー | ゲームが初期化 |
+| ゲームオーバー | ブロックが上に到達 | GAME OVER表示 |
+
+### スコアリング確認
+
+| アクション | 期待スコア（Level 1） |
+|-----------|---------------------|
+| Single | 100 |
+| Double | 300 |
+| Triple | 500 |
+| Tetris | 800 |
+| T-Spin Double | 1200 |
+
+### レベルアップ確認
+
+- 10ライン消去でLevel 2に上昇
+- 落下速度が速くなる
+
+### ブラウザ互換性
+
+| ブラウザ | 動作確認 |
+|---------|---------|
+| Chrome | 推奨 |
+| Firefox | 対応 |
+| Edge | 対応 |
+| Safari | 対応 |
+
+---
+
+## 15. 連絡先
 
 | 役割 | 担当 | 連絡先 |
 |------|------|--------|
@@ -236,7 +327,7 @@ cd src && python -m http.server 8080
 
 ---
 
-## 13. 参考資料
+## 16. 参考資料
 
 - [Tetris Guideline - TetrisWiki](https://tetris.wiki/Tetris_Guideline)
 - [Super Rotation System - TetrisWiki](https://tetris.wiki/Super_Rotation_System)
